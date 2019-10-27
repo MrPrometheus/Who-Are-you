@@ -1801,6 +1801,31 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1603222795}
     m_Modifications:
+    - target: {fileID: 1713051495538924985, guid: a1c030b3fee76064fb228b82037a1bcc,
+        type: 3}
+      propertyPath: m_Name
+      value: Dialog
+      objectReference: {fileID: 0}
+    - target: {fileID: 1713051495538924985, guid: a1c030b3fee76064fb228b82037a1bcc,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.63358057
+      objectReference: {fileID: 0}
+    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.31381276
+      objectReference: {fileID: 0}
     - target: {fileID: 1713051495538924986, guid: a1c030b3fee76064fb228b82037a1bcc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1905,31 +1930,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.7735849
-      objectReference: {fileID: 0}
-    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.63358057
-      objectReference: {fileID: 0}
-    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.31381276
-      objectReference: {fileID: 0}
-    - target: {fileID: 1713051495538924985, guid: a1c030b3fee76064fb228b82037a1bcc,
-        type: 3}
-      propertyPath: m_Name
-      value: Dialog
-      objectReference: {fileID: 0}
-    - target: {fileID: 1713051495538924985, guid: a1c030b3fee76064fb228b82037a1bcc,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1713051494466195072, guid: a1c030b3fee76064fb228b82037a1bcc,
         type: 3}
@@ -2862,7 +2862,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 4
-  fixedJoystick: {fileID: 1551031811}
+  JoysticController: {fileID: 0}
 --- !u!114 &1122414055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3263,18 +3263,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1362440787}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1551031811 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252,
-    type: 3}
-  m_PrefabInstance: {fileID: 1362440787}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1551031810}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1551031814 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252,
@@ -3624,7 +3612,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a9de0c7c4bc204093105eeaac3be17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDay: 0
+  WolfPointsGeneration: []
 --- !u!4 &1740704354
 Transform:
   m_ObjectHideFlags: 0
@@ -3707,6 +3695,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: "\u0418\u0437\u0430\u0431\u0435\u043B\u0430\u0430"
+  head: {fileID: 0}
   Proffesion: 1
 --- !u!50 &1754359404
 Rigidbody2D:
@@ -3741,6 +3730,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67414ed1299631447939a3a787a01f4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dayTriggerRadius: 0
+  nightTrigerRadius: 0
+  karma: 0
+  pointLight: {fileID: 0}
 --- !u!61 &1754359406
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -3816,6 +3809,75 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1755881264
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1752514072290347265, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_Name
+      value: DialogData
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 453.63757
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 203.41307
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -887.85754
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 254a8bf7c4345ce48aaa907c0de71a8f, type: 3}
 --- !u!1 &1762594311
 GameObject:
   m_ObjectHideFlags: 0
@@ -4049,7 +4111,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf9cf7b92df62d40a676b8f7f458b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixedJoystick: {fileID: 1551031811}
+  BloodImage: {fileID: 0}
+  Blood: {fileID: 0}
+  Growl: {fileID: 0}
 --- !u!114 &1876873675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4063,7 +4127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 6
-  fixedJoystick: {fileID: 1551031811}
+  JoysticController: {fileID: 0}
 --- !u!95 &1876873676
 Animator:
   serializedVersion: 3

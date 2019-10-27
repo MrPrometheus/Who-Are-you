@@ -39,16 +39,20 @@ public class NPC : MonoBehaviour
     {
         LevelTrust = levelTrustStatic[(int)Proffesion];
         dialogNum = dialogNumStatic[(int)Proffesion];
-        dialogSets = DialogData.Get(Proffesion);
+        dialogSets = DialogData.instance.GetDialogSet(Proffesion);
         DayController.DayHasCome += DayController_DayHasCome;
         DayController.NightHasCome += DayController_NightHasCome;
         buttonToDialog = transform.GetChild(0).gameObject;
         cloud = buttonToDialog.GetComponent<ClickController>();
         randomWalking = GetComponent<NpsAIRandomWalking>();
-        if (dialogNum + 1 == dialogSets[LevelTrust].DialogSets.Length)
+        if (dialogSets != null)
         {
-            if (LevelTrust == dialogSets.Length - 1) buttonToDialog.SetActive(false);
+            if (dialogNum + 1 == dialogSets[LevelTrust].Dialogs.Length)
+            {
+                if (LevelTrust == dialogSets.Length - 1) buttonToDialog.SetActive(false);
+            }
         }
+        else cloud.gameObject.SetActive(false);
 
     }
 
@@ -80,14 +84,14 @@ public class NPC : MonoBehaviour
     {
         dialogNum++;
         controller.EndDialog += EndDialogEventReciever;
-        if (dialogNum == dialogSets[LevelTrust].DialogSets.Length)
+        if (dialogNum == dialogSets[LevelTrust].Dialogs.Length)
         {
             dialogNum = 0;
             if (LevelTrust != dialogSets.Length - 1) LevelTrust++;
         }
         if (randomWalking != null) randomWalking.isWorking = false;
         buttonToDialog.SetActive(false);
-        controller.StartDialog(dialogSets[LevelTrust].DialogSets[dialogNum], Name, head);
+        controller.StartDialog(dialogSets[LevelTrust].Dialogs[dialogNum], Name, head);
     }
 
     // по завершению диалога проверяем накопленные очки

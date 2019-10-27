@@ -307,6 +307,75 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.13404731, y: 1.3747911}
   m_EdgeRadius: 0
+--- !u!1001 &185808806
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1752514072290347265, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_Name
+      value: DialogData
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 453.63757
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 203.41307
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -887.85754
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1752514072290347295, guid: 254a8bf7c4345ce48aaa907c0de71a8f,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 254a8bf7c4345ce48aaa907c0de71a8f, type: 3}
 --- !u!1 &210727783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1326,7 +1395,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02a9de0c7c4bc204093105eeaac3be17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isDay: 0
+  WolfPointsGeneration: []
 --- !u!4 &745546639
 Transform:
   m_ObjectHideFlags: 0
@@ -1569,18 +1638,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1451293618}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1049390240 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2929252283123773951, guid: aaa2c939c0359ac4dbce3f49e8b90252,
-    type: 3}
-  m_PrefabInstance: {fileID: 1451293618}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1049390239}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 45977bbae16431c46a013576a1aea384, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &1049390241 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252,
@@ -2168,7 +2225,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: daf9cf7b92df62d40a676b8f7f458b9c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fixedJoystick: {fileID: 1049390240}
+  BloodImage: {fileID: 0}
+  Blood: {fileID: 0}
+  Growl: {fileID: 0}
 --- !u!114 &1264883332
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2182,7 +2241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 6
-  fixedJoystick: {fileID: 1049390240}
+  JoysticController: {fileID: 0}
 --- !u!95 &1264883333
 Animator:
   serializedVersion: 3
@@ -4267,6 +4326,21 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.63358057
+      objectReference: {fileID: 0}
+    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.31381276
+      objectReference: {fileID: 0}
     - target: {fileID: 1713051495538924986, guid: a1c030b3fee76064fb228b82037a1bcc,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4697,21 +4771,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 57
       objectReference: {fileID: 0}
-    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.7735849
-      objectReference: {fileID: 0}
-    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.63358057
-      objectReference: {fileID: 0}
-    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.31381276
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a1c030b3fee76064fb228b82037a1bcc, type: 3}
 --- !u!1 &2114337975
@@ -4810,7 +4869,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 4
-  fixedJoystick: {fileID: 1049390240}
+  JoysticController: {fileID: 0}
 --- !u!114 &2114337980
 MonoBehaviour:
   m_ObjectHideFlags: 0

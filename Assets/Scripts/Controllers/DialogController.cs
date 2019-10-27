@@ -60,11 +60,11 @@ public class DialogController : MonoBehaviour
         joyStick.SetActive(false);
         while (true)
         {
-            Question.text = dialog.dialog[nextAnswere].question;
+            Question.text = dialog.QusetionSet[nextAnswere].NPCQuestion;
             int j = 0;
-            for (; j < dialog.dialog[nextAnswere].answers.Length; j++)
+            for (; j < dialog.QusetionSet[nextAnswere].Answers.Length; j++)
             {
-                Answers[j].text = (j+1) + " " + dialog.dialog[nextAnswere].answers[j];
+                Answers[j].text = (j+1) + " " + dialog.QusetionSet[nextAnswere].Answers[j];
                 Buttons[j].gameObject.SetActive(true);
             }
             //Answers[j].text = (j + 1) + " " + VariansForLeave[Random.Range(0, VariansForLeave.Length)];
@@ -78,9 +78,9 @@ public class DialogController : MonoBehaviour
             while (!isAnswered) yield return null;
             if (currentAnswere == -1)
             { Off(); break; }
-            currentScore += dialog.dialog[nextAnswere].pointsForQuestion[currentAnswere];
-            nextAnswere = dialog.dialog[nextAnswere].qustionNumber[currentAnswere];
-            if (nextAnswere < 0 || nextAnswere > dialog.dialog.Length - 1)
+            currentScore += dialog.QusetionSet[nextAnswere].PointsForQuestion[currentAnswere];
+            nextAnswere = dialog.QusetionSet[nextAnswere].NextQuestionNumber[currentAnswere];
+            if (nextAnswere < 0 || nextAnswere > dialog.QusetionSet.Length - 1)
             { Off(); break; }
 
         }
