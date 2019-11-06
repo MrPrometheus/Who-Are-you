@@ -1,23 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class DoctorAnimController : MonoBehaviour
 {
     private Animator doctorAnim;
-    private Move move = null;
+    [Inject]
+    private JoysticController _joysticController;
+    public Vector2 Direction { get { return _joysticController.currentJoystick.Direction; } }
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
-    public Vector2 Direction { get { return move.Direction; } }
 
     void Start()
     {
         doctorAnim = GetComponent<Animator>();
-        move = GetComponent<Move>();
     }
 
     void Update()
     {
-        //Debug.Log(move.Dirction);
         if (Direction.magnitude > 0) doctorAnim.SetBool(IsRunning, true);
         else doctorAnim.SetBool(IsRunning, false);
     }

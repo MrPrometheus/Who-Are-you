@@ -2,22 +2,29 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
 public delegate void Scores(int score);
 
 public class DialogController : MonoBehaviour
 {
-    public int Speed = 5;
-    public GameObject joyStick;
-    public Text Name;
-    public Text Question;
-    public Image HeadOfNps;
-
-    public GameObject[] Buttons;
+    public int OpenPanelSpeed = 5;
+    [Inject]
+    private JoysticController _joysticController;
+    [SerializeField]
+    private Text Name;
+    [SerializeField]
+    private Text Question;
+    [SerializeField]
+    private Image HeadOfNps;
+    [SerializeField]
+    private GameObject[] Buttons;
+    [SerializeField]
     private Text[] Answers;
+    [SerializeField]
+    private string[] VariansForLeave;
 
     public event Scores EndDialog;
-    public string[] VariansForLeave;
     
     bool isAnswered = false;
     float startScaleY;
@@ -28,15 +35,12 @@ public class DialogController : MonoBehaviour
 
     private void Start()
     {
-        NPC.controller = this;
         startScaleY = transform.localScale.y;
         transform.localScale -= new Vector3(0, 1) * startScaleY;
         Answers = new Text[Buttons.Length];
         for (int i = 0; i < Answers.Length; i++)
             Answers[i] = Buttons[i].transform.GetChild(0).GetComponent<Text>();
         DayController.NightHasCome += DayController_NightHasCome;
-        //DialogSet dialogSet = SellerD1.GetSet();
-        //StartCoroutine(StartDialogEnumerator(dialogSet.DialogSets[0], dialogSet.CountBallsForNextLevel));
     }
 
     // елси пришла ночь, то завершаем диалог
@@ -47,7 +51,7 @@ public class DialogController : MonoBehaviour
 
     public void StartDialog(Dialog dialog,string Name, Sprite head)
     {
-        joyStick.SetActive(false);
+        _joysticController.currentJoystick.gameObject.SetActive(false);
         this.Name.text = Name;
         HeadOfNps.sprite = head;
         nextAnswere = 0;
@@ -57,14 +61,14 @@ public class DialogController : MonoBehaviour
 
     IEnumerator StartDialogEnumerator(Dialog dialog)
     {
-        joyStick.SetActive(false);
+        _joysticController.currentJoystick.gameObject.SetActive(false);
         while (true)
         {
             Question.text = dialog.QusetionSet[nextAnswere].NPCQuestion;
             int j = 0;
             for (; j < dialog.QusetionSet[nextAnswere].Answers.Length; j++)
             {
-                Answers[j].text = (j+1) + " " + dialog.QusetionSet[nextAnswere].Answers[j];
+                Answers[j].text = (j+1) + ". " + dialog.QusetionSet[nextAnswere].Answers[j];
                 Buttons[j].gameObject.SetActive(true);
             }
             //Answers[j].text = (j + 1) + " " + VariansForLeave[Random.Range(0, VariansForLeave.Length)];
@@ -99,7 +103,7 @@ public class DialogController : MonoBehaviour
     {
         EndDialog(currentScore);
         currentScore = 0;
-        joyStick.SetActive(true);
+        _joysticController.currentJoystick.gameObject.SetActive(true);
         StartCoroutine(close());
     }
     
@@ -107,7 +111,7 @@ public class DialogController : MonoBehaviour
     {
         while(transform.localScale.y >= 0)
         {
-            transform.localScale -= new Vector3 (0, 1) * 0.01f * Speed;
+            transform.localScale -= new Vector3 (0, 1) * 0.01f * OpenPanelSpeed;
             yield return null;
         }
         
@@ -117,7 +121,7 @@ public class DialogController : MonoBehaviour
     {
         while (transform.localScale.y <= startScaleY)
         {
-            transform.localScale += new Vector3(0, 1) * 0.01f * Speed;
+            transform.localScale += new Vector3(0, 1) * 0.01f * OpenPanelSpeed;
             yield return null;
         }
 

@@ -6,22 +6,24 @@ using UnityEngine.UI;
 
 public class EffectsController : MonoBehaviour
 {
-    public Image Blackout;
+    private Image Blackout;
     public Sprite[] turingCondition;
     public AudioClip VoiceWolfGeneration;
     private AudioSource audioSource;
     private static float Speed = 1.0f;
 
 
-    private void Start()
+    private void Awake()
     {
+        Blackout = GetComponent<Image>();
+        Blackout.enabled = false;
         audioSource = GetComponent<AudioSource>();
     }
 
     public IEnumerator BlackoutProcess()
     {
         // включаем фон и сбрасываем alfa на 0
-        Blackout.gameObject.SetActive(true);
+        Blackout.enabled = true;
         Blackout.color -= new Color(0, 0, 0, Blackout.color.a);
         // и медленно прибавляем alfa
         while (Blackout.color.a < 1)
@@ -34,7 +36,7 @@ public class EffectsController : MonoBehaviour
     public IEnumerator LighteningProcess()
     {
         // включаем фон и сбрасываем alfa на 1
-        Blackout.gameObject.SetActive(true);
+        Blackout.enabled = true;
         Blackout.color += new Color(0, 0, 0, 1 - Blackout.color.a);
         // и медленно убавляем alfa
         while (Blackout.color.a > 0)
@@ -42,7 +44,7 @@ public class EffectsController : MonoBehaviour
             Blackout.color -= new Color(0, 0, 0, 1) * 0.01f * Speed;
             yield return null;
         }
-        Blackout.gameObject.SetActive(false);
+        Blackout.enabled = false;
     }
 
     public IEnumerator SetDay(float delay)

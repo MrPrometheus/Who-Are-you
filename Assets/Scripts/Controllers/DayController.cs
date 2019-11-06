@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public enum TimeOfDay {Night, Morning, Day, Evening }
+public enum TimeOfDay {Night, Day}
 public delegate void Void();
 public delegate IEnumerator Enumerate();
 

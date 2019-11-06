@@ -5,9 +5,10 @@ using UnityEngine.UI;
 
 public class CarmaController : MonoBehaviour
 {
-    public Text KarmaText;
-    public GameObject KarmaObj;
-    static int currentCarma = 0;
+    [SerializeField]
+    private Text KarmaTextCount;
+    private GameObject KarmaObj;
+    private static int currentCarma = 0;
 
     private void Start()
     {
@@ -16,7 +17,7 @@ public class CarmaController : MonoBehaviour
         DayController.BlackOutAnimEnd += DayController_BlackOutAnimEnd;
         KarmaObj = transform.GetChild(0).gameObject;
         KarmaObj.SetActive(false);
-        KarmaText.text = currentCarma + "";
+        KarmaTextCount.text = currentCarma + "";
     }
 
     private void DayController_BlackOutAnimEnd()
@@ -39,6 +40,6 @@ public class CarmaController : MonoBehaviour
     public void UpdateKarma(int newKarma)
     {
         currentCarma -= newKarma;
-        KarmaText.text = currentCarma + "";
+        KarmaTextCount.text = currentCarma + "";
     }
 }

@@ -8,7 +8,6 @@ public class NpsAIRandomWalking : MonoBehaviour
     private Vector2 minWalkPoint;
     private Vector2 maxWalkPoint;
     private Animator animator;
-
     private Rigidbody2D myRigidbody;
     
     public float walkTime;

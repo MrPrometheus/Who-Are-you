@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
+using Zenject;
 
 public class NPC : MonoBehaviour
 {
@@ -10,8 +10,8 @@ public class NPC : MonoBehaviour
     public Sprite head;
     public Employee Proffesion;
 
-    public static DialogController controller;
-
+    [Inject] public DialogController controller;
+    [Inject] private DialogData _dialogData;
     private DialogSet[] dialogSets;
     private GameObject buttonToDialog;
     private ClickController cloud;
@@ -39,7 +39,7 @@ public class NPC : MonoBehaviour
     {
         LevelTrust = levelTrustStatic[(int)Proffesion];
         dialogNum = dialogNumStatic[(int)Proffesion];
-        dialogSets = DialogData.instance.GetDialogSet(Proffesion);
+        dialogSets = _dialogData.GetDialogSet(Proffesion);
         DayController.DayHasCome += DayController_DayHasCome;
         DayController.NightHasCome += DayController_NightHasCome;
         buttonToDialog = transform.GetChild(0).gameObject;

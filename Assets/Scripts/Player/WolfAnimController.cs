@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using Zenject;
 
-public delegate void DKarma(int newKarma);
+public delegate void KarmaDelegate(int newKarma);
 
 public class WolfAnimController : MonoBehaviour
 {
@@ -13,33 +14,31 @@ public class WolfAnimController : MonoBehaviour
     public AudioClip Blood;
     public AudioClip Growl;
 
-    public static event DKarma UdpateKarma;
+    public static event KarmaDelegate UdpateKarma;
 
-    private Joystick joystick;
+    [Inject] private JoysticController _joystickController;
     private AudioSource audioSource;
     private Animator wolfAnim;
     private Move move;
 
-    private Vector2 Direction { get { return move.Direction; } }
+    private Vector2 Direction { get { return _joystickController.currentJoystick.Direction; } }
     private static readonly int IsRunning = Animator.StringToHash("IsRunning");
     private List<GameObject> targets = new List<GameObject>();
     private static float maxAlfaBlood = 0.8f;
     private bool attackInProgress = false;
     private bool attackIsEnd = true;
 
-    void Start()
+    private void Start()
     {
         wolfAnim = GetComponent<Animator>();
-        move = GetComponent<Move>();
         audioSource = GetComponent<AudioSource>();
-        joystick = move.joystick;
         TriggerZone.Triger += TriggerZoneOnTriger;
     }
     private void OnDestroy()
     {
         TriggerZone.Triger -= TriggerZoneOnTriger;
     }
-    void Update()
+    private void Update()
     {
         if (Direction.magnitude > 0) wolfAnim.SetBool(IsRunning, true);
         else if (!attackInProgress) wolfAnim.SetBool(IsRunning, false);
@@ -71,30 +70,6 @@ public class WolfAnimController : MonoBehaviour
         var cl = BloodImage.color;
         BloodImage.color = new Color(cl.r, cl.g, cl.b, maxAlfaBlood);
     }
-
-    // метод, вызываемый аниамцией атаки
-    private void EndAttack()
-    {
-        attackIsEnd = true;
-    }
-    private void Play(AudioClip clip)
-    {
-        if (audioSource.isPlaying) audioSource.Stop();
-        audioSource.clip = clip;
-        audioSource.Play();
-    }
-    private void TriggerZoneOnTriger(GameObject target)
-    {
-        joystick.isWork = false; // блокируем джостик
-        if (attackInProgress) targets.Add(target);
-        else StartAttac(target);
-    }
-    private void StartAttac(GameObject target)
-    {
-        attackInProgress = true;
-        wolfAnim.SetBool(IsRunning, true);
-        StartCoroutine(Attack(target));
-    }
     IEnumerator Attack(GameObject target)
     {
         // поворот в сторону непися
@@ -112,7 +87,7 @@ public class WolfAnimController : MonoBehaviour
         }
         // либо едим, лобо бьем лапой непися
         string[] attackVariant = new string[] { "DoAttack", "DoEat" };
-        wolfAnim.SetTrigger(attackVariant[Random.Range(0,attackVariant.Length)]);
+        wolfAnim.SetTrigger(attackVariant[Random.Range(0, attackVariant.Length)]);
         wolfAnim.SetBool(IsRunning, false);
         Play(Blood); // звук крови
         StartCoroutine(bloodAnimation()); // анимация крови на экране
@@ -123,7 +98,7 @@ public class WolfAnimController : MonoBehaviour
         // если есть показатель кармы - обновляем ее
         if (UdpateKarma != null) UdpateKarma(target.GetComponent<TriggerZone>().karma);
         audioSource.Stop(); // заканчиваем звук крови
-        
+
         Destroy(target); // удаляем цель (в будующем запускаем у цели анимацию смерти)
         // если есть еще цели
         if (targets.Count > 0)
@@ -135,8 +110,34 @@ public class WolfAnimController : MonoBehaviour
         // иначе заканчиваем атаку
         else
         {
-            joystick.isWork = true; // разблокируем джостик
+            _joystickController.currentJoystick.isWork = true; // разблокируем джостик
             attackInProgress = false;
         }
     }
+    
+    // метод, вызываемый аниамцией атаки
+    private void EndAttack()
+    {
+        attackIsEnd = true;
+    }
+
+    private void Play(AudioClip clip)
+    {
+        if (audioSource.isPlaying) audioSource.Stop();
+        audioSource.clip = clip;
+        audioSource.Play();
+    }
+    private void TriggerZoneOnTriger(GameObject target)
+    {
+        _joystickController.currentJoystick.isWork = false; // блокируем джостик
+        if (attackInProgress) targets.Add(target);
+        else StartAttac(target);
+    }
+    private void StartAttac(GameObject target)
+    {
+        attackInProgress = true;
+        wolfAnim.SetBool(IsRunning, true);
+        StartCoroutine(Attack(target));
+    }
+   
 }

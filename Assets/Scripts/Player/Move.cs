@@ -1,25 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Zenject;
 
 public class Move : MonoBehaviour
 {
     public float Speed = 2f;
-    public JoysticController JoysticController;
-    public Joystick joystick { get; private set; }
-    public Vector2 Direction { get; private set; }
+    [Inject] public JoysticController _joysticController;
+    private Vector2 Direction { get { return _joysticController.currentJoystick.Direction; } }
 
-    private void Start()
-    {
-        joystick = JoysticController.currentJoystick;
-    }
 
     void Update()
     {
-        Vector2 direction = Vector2.up * joystick.Vertical + Vector2.right * joystick.Horizontal;
-        Direction = direction;
-        TurnAround(direction);
-        transform.Translate(Speed * Time.deltaTime * direction);
+        TurnAround(Direction);
+        transform.Translate(Speed * Time.deltaTime * Direction);
     }
 
     private void TurnAround(Vector2 dir)
