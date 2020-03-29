@@ -53,5 +53,10 @@ public class JSONSaver
     {
         return Application.persistentDataPath + "/" + fileName + prefix;
     }
+
+    public bool FileExists(string fileName)
+    {
+        return File.Exists(GetFilePath(fileName));
+    }
 }
 

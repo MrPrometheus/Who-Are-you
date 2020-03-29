@@ -1,11 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 public class PlayerController : MonoBehaviour
 {    
     public static GameObject currntActive;
+
+    [Inject] private SaveManager _saveManager;
 
     public  Transform[] WolfPointsGeneration;
     private GameObject  doctor;
@@ -26,6 +30,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnDestroy()
     {
+        _saveManager.dataToSave.lastPostion = doctor.active ? doctor.transform.position : wolf.transform.position;
+        _saveManager.dataToSave.lastSceneName = SceneManager.GetActiveScene().name;
+        _saveManager.dataToSave.lastSession = DateTime.Now;
+        _saveManager.Save();
         Door.ChangePosition -= Door_ChangePosition;
     }
 
@@ -43,7 +51,8 @@ public class PlayerController : MonoBehaviour
         wolf.SetActive(true);
         currntActive = wolf;
         // ставим волку случайную позицию из предложенных
-        wolf.transform.position = WolfPointsGeneration[Random.Range(0, WolfPointsGeneration.Length)].position;
+        int position_num = UnityEngine.Random.Range(0, WolfPointsGeneration.Length);
+        wolf.transform.position = WolfPointsGeneration[position_num].position;
     }
 
     private void DayControllerOnDayHasCome()

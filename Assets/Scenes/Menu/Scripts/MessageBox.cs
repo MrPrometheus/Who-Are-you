@@ -24,8 +24,8 @@ public class MessageBox : MonoBehaviour
     {
         _question.SetActive(true);
         _question.transform.Find("Text").GetComponent<Text>().text = qestion;
-        _question.transform.Find("ButtonYes").GetComponent<Text>().text = yes;
-        _question.transform.Find("ButtonNo").GetComponent<Text>().text = no;
+        _question.transform.Find("ButtonYes").Find("Text").GetComponent<Text>().text = yes;
+        _question.transform.Find("ButtonNo").Find("Text").GetComponent<Text>().text = no;
         while (answer == "") { await Task.Yield(); }
         _question.SetActive(false);
         switch (answer)

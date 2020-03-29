@@ -47,7 +47,7 @@ public class VideoControiler : MonoBehaviour
         }
     }
 
-    public void OnClickButton()
+    public void NewGameStart()
     {
         menu.SetActive(false);
         videoPlayer.Play();

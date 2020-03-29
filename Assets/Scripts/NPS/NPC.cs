@@ -14,13 +14,14 @@ public class NPC : MonoBehaviour
     [Inject] private DialogData _dialogData;
     [Inject] private SaveManager _saveManager;
     [Inject] private MessageBox _messageBox;
+
     private DialogSet[] dialogSets;
     private GameObject buttonToDialog;
     private ClickController cloud;
     private NpsAIRandomWalking randomWalking;
 
-    public static List<int> levelTrustStatic =  Enumerable.Repeat(0, 3).Select(n => { return 0; }).ToList();
-    public static List<int> dialogNumStatic = Enumerable.Repeat(0, 3).Select(n => { return -1; }).ToList();
+    //public static List<int> levelTrustStatic =  Enumerable.Repeat(0, 3).Select(n => { return 0; }).ToList();
+    //public static List<int> dialogNumStatic = Enumerable.Repeat(0, 3).Select(n => { return -1; }).ToList();
 
     private int LevelTrust = 0;
     private int dialogNum = -1;
@@ -39,8 +40,8 @@ public class NPC : MonoBehaviour
 
     private void Start()
     {
-        LevelTrust = levelTrustStatic[(int)Proffesion];
-        dialogNum = dialogNumStatic[(int)Proffesion];
+        LevelTrust = _saveManager.dataToSave.levelTrustStatic[(int)Proffesion];
+        dialogNum = _saveManager.dataToSave.dialogNumStatic[(int)Proffesion];
         dialogSets = _dialogData.GetDialogSet(Proffesion);
         DayController.DayHasCome += DayController_DayHasCome;
         DayController.NightHasCome += DayController_NightHasCome;
@@ -67,8 +68,8 @@ public class NPC : MonoBehaviour
     private void SaveProgress()
     {
         Debug.Log("сохраняем");
-        levelTrustStatic[(int)Proffesion] = LevelTrust;
-        dialogNumStatic[(int)Proffesion] = dialogNum;
+        _saveManager.dataToSave.levelTrustStatic[(int)Proffesion] = LevelTrust;
+        _saveManager.dataToSave.dialogNumStatic[(int)Proffesion] = dialogNum;
         _messageBox.SaveAnim();
         _saveManager.SaveStatic();
     }
