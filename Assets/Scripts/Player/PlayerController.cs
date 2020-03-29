@@ -10,15 +10,16 @@ public class PlayerController : MonoBehaviour
     public static GameObject currntActive;
 
     [Inject] private SaveManager _saveManager;
+    [Inject] private MessageBox _messageBox;
 
     public  Transform[] WolfPointsGeneration;
     private GameObject  doctor;
     private GameObject  wolf;
     private Vector2     tpPosition;
-
-
+    
     void Awake()
     {
+        _saveManager.InitialData();
         DayController.DayHasCome += DayControllerOnDayHasCome;
         DayController.NightHasCome += DayControllerOnNightHasCome;
         

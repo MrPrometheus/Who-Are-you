@@ -37,6 +37,10 @@ public class NPC : MonoBehaviour
         if (collision.tag == "Player")
             cloud.BlackoutCloud(); ;
     }
+    private void Awake()
+    {
+        _saveManager.InitialData();
+    }
 
     private void Start()
     {
