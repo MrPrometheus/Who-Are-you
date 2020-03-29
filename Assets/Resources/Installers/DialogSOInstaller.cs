@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
-[CreateAssetMenu(fileName = "SOInstaller", menuName = "Installers/SOInstaller")]
-public class SOInstaller : ScriptableObjectInstaller
+[CreateAssetMenu(fileName = "DialogSOInstaller", menuName = "Installers/DialogSOInstaller")]
+public class DialogSOInstaller : ScriptableObjectInstaller
 {
     public DialogData dialogData;
 

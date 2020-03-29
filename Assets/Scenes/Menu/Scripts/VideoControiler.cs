@@ -4,9 +4,12 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.Video;
+using Zenject;
 
 public class VideoControiler : MonoBehaviour
 {
+    [Inject] private MySceneController _mySceneController;
+
     public GameObject LoadText;
     public GameObject menu;
 
@@ -40,14 +43,8 @@ public class VideoControiler : MonoBehaviour
         }
         if (videoPlayer.time > 20 && !videoPlayer.isPlaying)
         {
-            LoadFirsScene();
+            _mySceneController.LoadFirstScene();
         }
-    }
-
-    public void LoadFirsScene()
-    {
-        ReloadDoor.isTeleportToPoint = true;
-        SceneManager.LoadSceneAsync("bashnya");
     }
 
     public void OnClickButton()

@@ -12,6 +12,8 @@ public class NPC : MonoBehaviour
 
     [Inject] public DialogController controller;
     [Inject] private DialogData _dialogData;
+    [Inject] private SaveManager _saveManager;
+    [Inject] private MessageBox _messageBox;
     private DialogSet[] dialogSets;
     private GameObject buttonToDialog;
     private ClickController cloud;
@@ -58,7 +60,7 @@ public class NPC : MonoBehaviour
 
     private void OnDestroy()
     {
-        SaveProgress();
+        //SaveProgress();
         DayController.DayHasCome -= DayController_DayHasCome;
         DayController.NightHasCome -= DayController_NightHasCome;
     }
@@ -67,7 +69,8 @@ public class NPC : MonoBehaviour
         Debug.Log("сохраняем");
         levelTrustStatic[(int)Proffesion] = LevelTrust;
         dialogNumStatic[(int)Proffesion] = dialogNum;
-        JSONSaver.SaveStatic();
+        _messageBox.SaveAnim();
+        _saveManager.SaveStatic();
     }
 
     private void DayController_NightHasCome()
