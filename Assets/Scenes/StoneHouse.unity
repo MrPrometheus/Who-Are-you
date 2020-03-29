@@ -2073,6 +2073,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 942755644505179063, guid: 1cded42ddb480454ea0e69b1c594ef97,
+        type: 3}
+      propertyPath: _monoInstallers.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1cded42ddb480454ea0e69b1c594ef97, type: 3}
 --- !u!1001 &1012777121
@@ -2091,21 +2096,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
-        type: 3}
-      propertyPath: m_Color.r
-      value: 0.7735849
-      objectReference: {fileID: 0}
-    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0.63358057
-      objectReference: {fileID: 0}
-    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0.31381276
       objectReference: {fileID: 0}
     - target: {fileID: 1713051495538924986, guid: a1c030b3fee76064fb228b82037a1bcc,
         type: 3}
@@ -2211,6 +2201,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.7735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.63358057
+      objectReference: {fileID: 0}
+    - target: {fileID: 219378091393314627, guid: a1c030b3fee76064fb228b82037a1bcc,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.31381276
       objectReference: {fileID: 0}
     - target: {fileID: 1713051494466195072, guid: a1c030b3fee76064fb228b82037a1bcc,
         type: 3}

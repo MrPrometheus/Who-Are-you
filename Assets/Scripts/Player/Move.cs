@@ -11,7 +11,7 @@ public class Move : MonoBehaviour
 
 
     void Update()
-    {
+    { 
         TurnAround(Direction);
         transform.Translate(Speed * Time.deltaTime * Direction);
     }
