@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Werewolf
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - Player
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 3526451295
+    locked: 0
+  - name: FirstHouse
+    uniqueID: 2835126883
+    locked: 0
+  - name: SecondHouse
+    uniqueID: 2387622021
+    locked: 0
+  - name: ThirdHouse
+    uniqueID: 2960796907
+    locked: 0
+  - name: FourthHouse
+    uniqueID: 1575786069
+    locked: 0
+  - name: FifthHouse
+    uniqueID: 3166347785
+    locked: 0
+  - name: SixthHouse
+    uniqueID: 659418789
+    locked: 0
+  - name: FirstFence
+    uniqueID: 1998358075
+    locked: 0
+  - name: FirstFences
+    uniqueID: 3585914071
+    locked: 0
+  - name: SecondFence
+    uniqueID: 2902338999
+    locked: 0
+  - name: TentSecond
+    uniqueID: 1187407443
+    locked: 0
+  - name: TentFirst
+    uniqueID: 3478671915
+    locked: 0
+  - name: Fountain
+    uniqueID: 2091994215
+    locked: 0
+  - name: CubeSecond
+    uniqueID: 3390414721
+    locked: 0
+  - name: SeventhHouse
+    uniqueID: 2455882217
+    locked: 0
+  - name: EightsHouse
+    uniqueID: 2985179223
+    locked: 0
+  - name: NinthHouse
+    uniqueID: 3071100443
+    locked: 0
+  - name: TenthHouse
+    uniqueID: 1979006269
+    locked: 0
+  - name: EleventhHouse
+    uniqueID: 3080314945
+    locked: 0
+  - name: TwelfthHouse
+    uniqueID: 1109496847
+    locked: 0
+  - name: FourteenthHouse
+    uniqueID: 3637055711
+    locked: 0
+  - name: FiftennthHouse
+    uniqueID: 2968025199
+    locked: 0
+  - name: SixthBox
+    uniqueID: 3938044965
+    locked: 0

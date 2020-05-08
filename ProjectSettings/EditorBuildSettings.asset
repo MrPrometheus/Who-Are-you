@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenu.unity
+    guid: 74c286e20d297af41abfdea346825b49
+  - enabled: 1
+    path: Assets/Scenes/bashnya.unity
+    guid: 0f8180c65392c1640a9e4a6dbc61b3c0
+  - enabled: 1
+    path: Assets/Scenes/OpenWorld.unity
+    guid: 0bd1c672d45a4a64da6d040832d0b043
+  - enabled: 1
+    path: Assets/Scenes/Kuznica.unity
+    guid: c000f4ae276e29147b18e2cff266c36e
+  - enabled: 1
+    path: Assets/Scenes/Kuznica2.unity
+    guid: 7d5a2dfd5d8ac944da428a11ccb5c81e
+  - enabled: 1
+    path: Assets/Scenes/StoneHouse.unity
+    guid: a217de8f7ce607a49a706ac3c2dfc79a
+  - enabled: 1
+    path: Assets/Scenes/taverna.unity
+    guid: df6c7bd8ee7a05f4b9002872e5738040
+  - enabled: 1
+    path: Assets/Scenes/tkach`s house.unity
+    guid: 7def3cf060d22c7449836f8597a10c7f
+  m_configObjects: {}
